@@ -4,7 +4,6 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         Calculator calculator = new Calculator();
-        List<Character> operlandList = new ArrayList<Character>(Arrays.asList(new Character[]{'+', '-', '*', '/'}));
         boolean flag = true;
         while (flag) {
             double result = 0;
@@ -19,9 +18,6 @@ public class App {
                     }
                     System.out.println("사칙연산 기호를 입력하세요: ");
                     Character operator = sc.next().charAt(0);
-                    if (!operlandList.contains(operator)) {
-                        throw new BadInputException("사칙연산자");
-                    }
                     System.out.println("두 번째 숫자를 입력하세요: ");
                     Integer secondNumber = sc.nextInt();
                     if (secondNumber < 0 || !(secondNumber instanceof Integer)) {
@@ -31,7 +27,7 @@ public class App {
                     // 입력 끝
                     // 연산
                     //연산 결과 반환 및 저장
-                    result = calculator.ArithmeticCalculator(firstNumber, secondNumber, operator);
+                    result = calculator.arithC(firstNumber, secondNumber, operator);
                     calculator.setNumQ(result);
                     System.out.println("결과: " + result);
                     // 후처리-삭제, 조회, 진행 여부
@@ -48,7 +44,7 @@ public class App {
                     case 2 : System.out.println("원의 반지름을 입력하세요: ");
                         Double radius = sc.nextDouble();
                         sc.nextLine();
-                        result = calculator.CircleCalculator(radius);
+                        result = calculator.circleC(radius);
                         calculator.setCircleQ(result);
                         System.out.println("결과: " + result);
                         // 후처리-삭제, 조회, 진행 여부
